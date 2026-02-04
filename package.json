@@ -1,0 +1,27 @@
+{
+  "name": "@foxbase/docufox",
+  "version": "1.0.0",
+  "description": "AI enriched OpenAPI specifications",
+  "keywords": [
+    "ai",
+    "openapi",
+    "documentation",
+    "api",
+    "llm"
+  ],
+  "homepage": "https://github.com/foxbase/docufox#readme",
+  "bugs": {
+    "url": "https://github.com/foxbase/docufox/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foxbase/docufox.git"
+  },
+  "license": "MIT",
+  "author": "Max Overlack (https://maxoverlack.dev/)",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
