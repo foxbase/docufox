@@ -1,0 +1,31 @@
+{
+	"name": "@foxbase/docufox-example",
+	"version": "1.0.0",
+	"description": "FoxBase DocuFox example",
+	"keywords": [
+		"ai",
+		"openapi",
+		"documentation",
+		"api",
+		"llm"
+	],
+	"homepage": "https://github.com/foxbase/docufox#readme",
+	"bugs": {
+		"url": "https://github.com/foxbase/docufox/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/foxbase/docufox.git"
+	},
+	"license": "MIT",
+	"author": "Max Overlack (https://maxoverlack.dev/)",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"enrich": "docufox"
+	},
+	"dependencies": {
+		"@foxbase/docufox": "file:.."
+	}
+}

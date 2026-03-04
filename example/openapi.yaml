@@ -1,0 +1,434 @@
+openapi: 3.1.0
+info:
+  title: SWAPI - The Star Wars API
+  version: 1.0.0
+paths:
+  /api/films/{id}/people:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+  /api/people/{id}/films:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    episode_id:
+                      type: integer
+                    opening_crawl:
+                      type: string
+                    director:
+                      type: string
+                    producer:
+                      type: string
+                    release_date:
+                      type: string
+                    characters:
+                      type: array
+                      items:
+                        type: string
+                    planets:
+                      type: array
+                      items:
+                        type: string
+                    starships:
+                      type: array
+                      items:
+                        type: string
+                    vehicles:
+                      type: array
+                      items:
+                        type: string
+                    species:
+                      type: array
+                      items:
+                        type: string
+                    created:
+                      type: string
+                    edited:
+                      type: string
+                    url:
+                      type: string
+                  required:
+                    - title
+                    - episode_id
+                    - opening_crawl
+                    - director
+                    - producer
+                    - release_date
+                    - characters
+                    - planets
+                    - starships
+                    - vehicles
+                    - species
+                    - created
+                    - edited
+                    - url
+  /api/films/{id}/planets:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    rotation_period:
+                      type: string
+                    orbital_period:
+                      type: string
+                    diameter:
+                      type: string
+                    climate:
+                      type: string
+                    gravity:
+                      type: string
+                    terrain:
+                      type: string
+                    surface_water:
+                      type: string
+                    population:
+                      type: string
+                    residents:
+                      type: array
+                      items:
+                        type: string
+                    films:
+                      type: array
+                      items:
+                        type: string
+                    created:
+                      type: string
+                    edited:
+                      type: string
+                    url:
+                      type: string
+                  required:
+                    - name
+                    - rotation_period
+                    - orbital_period
+                    - diameter
+                    - climate
+                    - gravity
+                    - terrain
+                    - surface_water
+                    - population
+                    - residents
+                    - films
+                    - created
+                    - edited
+                    - url
+  /api/planets/{id}/films:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    episode_id:
+                      type: integer
+                    opening_crawl:
+                      type: string
+                    director:
+                      type: string
+                    producer:
+                      type: string
+                    release_date:
+                      type: string
+                    characters:
+                      type: array
+                      items:
+                        type: string
+                    planets:
+                      type: array
+                      items:
+                        type: string
+                    starships:
+                      type: array
+                      items:
+                        type: string
+                    vehicles:
+                      type: array
+                      items:
+                        type: string
+                    species:
+                      type: array
+                      items:
+                        type: string
+                    created:
+                      type: string
+                    edited:
+                      type: string
+                    url:
+                      type: string
+                  required:
+                    - title
+                    - episode_id
+                    - opening_crawl
+                    - director
+                    - producer
+                    - release_date
+                    - characters
+                    - planets
+                    - starships
+                    - vehicles
+                    - species
+                    - created
+                    - edited
+                    - url
+  /api/films/{id}/species:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+  /api/films/{id}/starships:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+  /api/films/{id}/vehicles:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+  /api/species/{id}/people:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+  /api/starships/{id}/people:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+  /api/planets/{id}/people:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+  /api/people:
+    get:
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /api/films:
+    get:
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    episode_id:
+                      type: integer
+                    opening_crawl:
+                      type: string
+                    director:
+                      type: string
+                    producer:
+                      type: string
+                    release_date:
+                      type: string
+                    characters:
+                      type: array
+                      items:
+                        type: string
+                    planets:
+                      type: array
+                      items:
+                        type: string
+                    starships:
+                      type: array
+                      items:
+                        type: string
+                    vehicles:
+                      type: array
+                      items:
+                        type: string
+                    species:
+                      type: array
+                      items:
+                        type: string
+                    created:
+                      type: string
+                    edited:
+                      type: string
+                    url:
+                      type: string
+                  required:
+                    - title
+                    - episode_id
+                    - opening_crawl
+                    - director
+                    - producer
+                    - release_date
+                    - characters
+                    - planets
+                    - starships
+                    - vehicles
+                    - species
+                    - created
+                    - edited
+                    - url
+  /api/planets:
+    get:
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  rotation_period:
+                    type: string
+                  orbital_period:
+                    type: string
+                  diameter:
+                    type: string
+                  climate:
+                    type: string
+                  gravity:
+                    type: string
+                  terrain:
+                    type: string
+                  surface_water:
+                    type: string
+                  population:
+                    type: string
+                  residents:
+                    type: array
+                    items:
+                      type: string
+                  films:
+                    type: array
+                    items:
+                      type: string
+                  created:
+                    type: string
+                  edited:
+                    type: string
+                  url:
+                    type: string
+                required:
+                  - name
+                  - rotation_period
+                  - orbital_period
+                  - diameter
+                  - climate
+                  - gravity
+                  - terrain
+                  - surface_water
+                  - population
+                  - residents
+                  - films
+                  - created
+                  - edited
+                  - url

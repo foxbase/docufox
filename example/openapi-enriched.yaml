@@ -1,0 +1,630 @@
+openapi: 3.1.0
+info:
+  title: SWAPI - The Star Wars API
+  version: 1.0.0
+paths:
+  /api/films/{id}/people:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Returns the people associated with the specified film, with each entry providing identifying details and role information (for example name and character or crew role) plus any relevant links or metadata. If the film has no associated people, an empty list is returned. Use this data to display or link cast and crew details for the film.
+      x-docufox-hash: b04a389c4139c7b6147976c2d81a35b3c9b97c91d23f73bcdbbb8c6beb8c503c
+      summary: List people appearing in a film
+      description: Retrieves the people associated with the film identified by the {id} path parameter, such as cast members or characters. The response returns an array of person resources with their basic details and links to individual records; a not-found error is returned if the film does not exist.
+  /api/people/{id}/films:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Returns a list of films associated with the specified person; each item includes the film’s identifying details (for example title and release information) and the person’s role in that film when available. The response will be an empty list if no films are found.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    episode_id:
+                      type: integer
+                    opening_crawl:
+                      type: string
+                    director:
+                      type: string
+                    producer:
+                      type: string
+                    release_date:
+                      type: string
+                    characters:
+                      type: array
+                      items:
+                        type: string
+                    planets:
+                      type: array
+                      items:
+                        type: string
+                    starships:
+                      type: array
+                      items:
+                        type: string
+                    vehicles:
+                      type: array
+                      items:
+                        type: string
+                    species:
+                      type: array
+                      items:
+                        type: string
+                    created:
+                      type: string
+                    edited:
+                      type: string
+                    url:
+                      type: string
+                  required:
+                    - title
+                    - episode_id
+                    - opening_crawl
+                    - director
+                    - producer
+                    - release_date
+                    - characters
+                    - planets
+                    - starships
+                    - vehicles
+                    - species
+                    - created
+                    - edited
+                    - url
+              examples: {}
+      x-docufox-hash: a231e6d0542cd12a90b69b94c186a2f2b06853878035e8d59b3d100a4b042222
+      summary: List films associated with a person
+      description: Returns the list of films associated with the person identified by the path parameter id. Each entry provides film details or a reference to the full film resource (for example title, release date, and identifier). Returns an empty list if the person has no associated films and appropriate error responses when the person is not found or the request is invalid.
+  /api/films/{id}/planets:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: "Returns an array of planets featured in the specified film, where each item provides the planet's details (for example: name, climate, terrain, and other relevant attributes). If the film has no associated planets, the response will be an empty array."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    rotation_period:
+                      type: string
+                    orbital_period:
+                      type: string
+                    diameter:
+                      type: string
+                    climate:
+                      type: string
+                    gravity:
+                      type: string
+                    terrain:
+                      type: string
+                    surface_water:
+                      type: string
+                    population:
+                      type: string
+                    residents:
+                      type: array
+                      items:
+                        type: string
+                    films:
+                      type: array
+                      items:
+                        type: string
+                    created:
+                      type: string
+                    edited:
+                      type: string
+                    url:
+                      type: string
+                  required:
+                    - name
+                    - rotation_period
+                    - orbital_period
+                    - diameter
+                    - climate
+                    - gravity
+                    - terrain
+                    - surface_water
+                    - population
+                    - residents
+                    - films
+                    - created
+                    - edited
+                    - url
+              examples:
+                filmWithMultiplePlanets:
+                  summary: Multiple planets associated with the film
+                  description: Typical response listing several planets featured in the film, including basic attributes and resident references.
+                  value:
+                    - id: 1
+                      name: Tatooine
+                      climate: arid
+                      terrain: desert
+                      population: 200000
+                      residents:
+                        - https://api.example.com/people/1
+                        - https://api.example.com/people/2
+                    - id: 3
+                      name: Naboo
+                      climate: temperate
+                      terrain: grassy hills, swamps, forests, mountains
+                      population: 4500000000
+                      residents:
+                        - https://api.example.com/people/25
+                        - https://api.example.com/people/26
+                        - https://api.example.com/people/27
+                    - id: 7
+                      name: Hoth
+                      climate: frozen
+                      terrain: tundra, ice caves, mountain ranges
+                      population: 0
+                      residents: []
+                filmWithSinglePlanet:
+                  summary: Film with a single featured planet
+                  description: Response when the film prominently features only one planet; still returned as an array with one element.
+                  value:
+                    - id: 42
+                      name: Dagobah
+                      climate: murky
+                      terrain: swamp, jungles
+                      population: 0
+                      residents:
+                        - https://api.example.com/people/99
+                filmWithNoPlanets:
+                  summary: No planets for the requested film
+                  description: Returned when the specified film has no associated planets; the body is an empty array.
+                  value: []
+      x-docufox-hash: 09ee56e379b7bedd8adb496d54a84be196a8cece5eb36c81e5499fc8e84d4384
+      summary: List planets featured in a film
+      description: Retrieves the planets associated with the specified film ID and returns a list of planet resources containing each planet’s identifying details and related metadata. Useful for discovering which locations appear in a given film. Returns a 404 error if the specified film cannot be found.
+  /api/planets/{id}/films:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Returns an array of films in which the specified planet appears; each item provides the film's identifying details (for example, title and release information) to enable display or further lookup.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    episode_id:
+                      type: integer
+                    opening_crawl:
+                      type: string
+                    director:
+                      type: string
+                    producer:
+                      type: string
+                    release_date:
+                      type: string
+                    characters:
+                      type: array
+                      items:
+                        type: string
+                    planets:
+                      type: array
+                      items:
+                        type: string
+                    starships:
+                      type: array
+                      items:
+                        type: string
+                    vehicles:
+                      type: array
+                      items:
+                        type: string
+                    species:
+                      type: array
+                      items:
+                        type: string
+                    created:
+                      type: string
+                    edited:
+                      type: string
+                    url:
+                      type: string
+                  required:
+                    - title
+                    - episode_id
+                    - opening_crawl
+                    - director
+                    - producer
+                    - release_date
+                    - characters
+                    - planets
+                    - starships
+                    - vehicles
+                    - species
+                    - created
+                    - edited
+                    - url
+              examples: {}
+      x-docufox-hash: a231e6d0542cd12a90b69b94c186a2f2b06853878035e8d59b3d100a4b042222
+      summary: List films featuring the specified planet
+      description: Retrieves all films that include the planet identified by the path id and returns an array of film records with core metadata such as title, release date, director, and episode number. Returns 404 if the planet is not found and standard error responses for invalid or unauthorized requests.
+  /api/films/{id}/species:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Returns a list of species appearing in the specified film, with each entry providing identifying and descriptive information to support display, filtering, or linking to related resources; an empty list is returned if the film has no associated species.
+      x-docufox-hash: b04a389c4139c7b6147976c2d81a35b3c9b97c91d23f73bcdbbb8c6beb8c503c
+      summary: List species appearing in a film
+      description: Retrieves the list of species that appear in the film identified by the {id} path parameter; the response is an array of species resources with their key attributes (such as name and classification). Use the film id to filter results and retrieve only species associated with that film. Returns a 404 status if the specified film does not exist.
+  /api/films/{id}/starships:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Returns an array of starships featured in the specified film, with each item providing key details such as name, model, manufacturer, and any identifiers or links for retrieving full starship data; if the film has no associated starships, an empty array is returned.
+      x-docufox-hash: b04a389c4139c7b6147976c2d81a35b3c9b97c91d23f73bcdbbb8c6beb8c503c
+      summary: List starships appearing in a film
+      description: Retrieves the starships featured in the film identified by the provided id, returning an array of starship objects with their key attributes. Responds with a successful list on success or an appropriate error if the film id is invalid or the film is not found.
+  /api/films/{id}/vehicles:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Returns an array of vehicles that appear in the specified film, with each item providing the vehicle’s identifying details, key attributes (such as model and manufacturer), and a link to its full resource when available; an empty array is returned if the film has no associated vehicles.
+      x-docufox-hash: b04a389c4139c7b6147976c2d81a35b3c9b97c91d23f73bcdbbb8c6beb8c503c
+      summary: List vehicles featured in a film
+      description: Retrieves an array of vehicles that appear in the film identified by the path parameter id, returning each vehicle's key attributes such as name, model, manufacturer, and related links. Responds with a successful list on 200 or an appropriate error (for example, 404) if the specified film cannot be found.
+  /api/species/{id}/people:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Returns an array of people associated with the specified species, with each entry providing that person's identifying and profile details (such as name, demographic attributes, and related links or IDs where available). If no people are associated with the species, the response will be an empty array.
+      x-docufox-hash: b04a389c4139c7b6147976c2d81a35b3c9b97c91d23f73bcdbbb8c6beb8c503c
+      summary: List people belonging to a species
+      description: Retrieves the list of people associated with the specified species ID, returning each person's details; an empty array is returned if the species has no associated people.
+  /api/starships/{id}/people:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Returns a list of people associated with the specified starship, where each item includes the person's identifying details and their role or relationship to the vessel. If no people are associated, the response contains an empty list.
+      x-docufox-hash: b04a389c4139c7b6147976c2d81a35b3c9b97c91d23f73bcdbbb8c6beb8c503c
+      summary: List people aboard a starship
+      description: Retrieves the list of people associated with the specified starship ID, returning each person’s identifying details and relevant metadata; if no people are linked to the starship an empty list is returned.
+  /api/planets/{id}/people:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Returns an array of people associated with the requested planet; each item contains the person's identifying information and relevant attributes. If there are no associated people, the response will be an empty array.
+      x-docufox-hash: b04a389c4139c7b6147976c2d81a35b3c9b97c91d23f73bcdbbb8c6beb8c503c
+      summary: List residents of specified planet
+      description: Retrieves the list of people associated with the planet identified by the path parameter id, returning an array of person records with relevant details for each individual. Results may be paginated or filterable using query parameters when supported. Returns an error if the specified planet does not exist.
+  /api/people:
+    get:
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Returns an array of people matching the request, where each item provides the person's unique identifier, name, and associated profile and contact details for display or further processing. If no records match, an empty array is returned.
+      x-docufox-hash: 68cf378ee9a77e88a44c776aa37ff284e148de18e4d9a236e3e8f6067467a4bd
+      summary: Retrieve a list of people
+      description: Retrieves a collection of people records and their primary attributes (such as id, name, and contact information). The response returns an array of people and may support pagination, filtering, or sorting via query parameters where available. Use this endpoint to fetch lists of person profiles for display or processing.
+  /api/films:
+    get:
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Returns an array of films available in the system, with each entry providing identifying and descriptive details—such as title, release information, genres, runtime, and ratings—suitable for display or further processing; the response reflects the current film catalog and may contain multiple records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    episode_id:
+                      type: integer
+                    opening_crawl:
+                      type: string
+                    director:
+                      type: string
+                    producer:
+                      type: string
+                    release_date:
+                      type: string
+                    characters:
+                      type: array
+                      items:
+                        type: string
+                    planets:
+                      type: array
+                      items:
+                        type: string
+                    starships:
+                      type: array
+                      items:
+                        type: string
+                    vehicles:
+                      type: array
+                      items:
+                        type: string
+                    species:
+                      type: array
+                      items:
+                        type: string
+                    created:
+                      type: string
+                    edited:
+                      type: string
+                    url:
+                      type: string
+                  required:
+                    - title
+                    - episode_id
+                    - opening_crawl
+                    - director
+                    - producer
+                    - release_date
+                    - characters
+                    - planets
+                    - starships
+                    - vehicles
+                    - species
+                    - created
+                    - edited
+                    - url
+              examples:
+                popularFilmList:
+                  summary: Recent popular films
+                  description: A small list of recent mainstream releases currently available for streaming.
+                  value:
+                    - id: 101
+                      title: Skyline Pursuit
+                      year: 2025
+                      director: Maya Rodriguez
+                      genres:
+                        - Action
+                        - Thriller
+                      durationMinutes: 128
+                      rating: 7.8
+                      synopsis: A pilot-turned-detective races across Europe to stop a high-tech smuggling ring.
+                      cast:
+                        - name: Liam Hart
+                          role: Ethan Cole
+                        - name: Nora Kim
+                          role: Agent Park
+                      releaseDate: 2025-02-14
+                      isAvailable: true
+                    - id: 102
+                      title: Summer in Blue
+                      year: 2024
+                      director: Ajay Singh
+                      genres:
+                        - Drama
+                        - Romance
+                      durationMinutes: 104
+                      rating: 8.2
+                      synopsis: Two strangers find connection and music during a seaside summer festival.
+                      cast:
+                        - name: Elena Rossi
+                          role: Mara
+                        - name: Jonas Pettersson
+                          role: Theo
+                      releaseDate: 2024-08-02
+                      isAvailable: true
+                classicFilmCollection:
+                  summary: Restored classic films
+                  description: Iconic older films that have been restored and are available for purchase or rental.
+                  value:
+                    - id: 12
+                      title: The Long Harbor
+                      year: 1972
+                      director: Harold Finch
+                      genres:
+                        - Drama
+                      durationMinutes: 142
+                      rating: 9.1
+                      synopsis: A seafaring tale of loss and redemption centered on a small coastal town.
+                      cast:
+                        - name: Margot Lane
+                          role: Evelyn
+                        - name: Thomas Reed
+                          role: Captain Hale
+                      releaseDate: 1972-11-09
+                      isAvailable: true
+                    - id: 27
+                      title: Neon Streets
+                      year: 1994
+                      director: Kenji Watanabe
+                      genres:
+                        - Crime
+                        - Neo-noir
+                      durationMinutes: 116
+                      rating: 8.7
+                      synopsis: A washed-up detective navigates the neon-lit underworld to solve one last case.
+                      cast:
+                        - name: Ibrahim Noor
+                          role: Detective Sato
+                        - name: Clara Dupont
+                          role: Lucille
+                      releaseDate: 1994-05-20
+                      isAvailable: true
+                mixedGenreAndDocumentary:
+                  summary: Mixed genres including documentary and indie short
+                  description: A diverse response showing a feature documentary (temporarily unavailable) and a short indie film.
+                  value:
+                    - id: 303
+                      title: Rivers of Change
+                      year: 2021
+                      director: Priya Nair
+                      genres:
+                        - Documentary
+                      durationMinutes: 94
+                      rating: 8.9
+                      synopsis: An investigative documentary following communities adapting to shifting river ecosystems.
+                      cast:
+                        - name: Various
+                          role: Interviewees
+                      releaseDate: 2021-10-12
+                      isAvailable: false
+                    - id: 404
+                      title: Paper Boats
+                      year: 2023
+                      director: Daniela Ortiz
+                      genres:
+                        - Indie
+                        - Short
+                      durationMinutes: 21
+                      rating: 7.3
+                      synopsis: A tender short about a child's summer and the small acts that teach compassion.
+                      cast:
+                        - name: Maya Lopez
+                          role: Ana
+                        - name: Rui Carvalho
+                          role: Joao
+                      releaseDate: 2023-06-05
+                      isAvailable: true
+      x-docufox-hash: be86f585e177a3c25d55f6088975e04be6ab62f5bc45f8f749b4e77ff025b3e5
+      summary: List all films
+      description: Retrieves a list of films, optionally filtered, sorted, and paginated via query parameters where supported, and returns an array of film objects with their associated metadata (such as identifiers, titles, and release information).
+  /api/planets:
+    get:
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Returns an array of planet records, each providing the planet's identification along with available physical and orbital details; the array may be empty if no planets match the request. Use the returned records to display planet listings or to drive further planet-specific queries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  rotation_period:
+                    type: string
+                  orbital_period:
+                    type: string
+                  diameter:
+                    type: string
+                  climate:
+                    type: string
+                  gravity:
+                    type: string
+                  terrain:
+                    type: string
+                  surface_water:
+                    type: string
+                  population:
+                    type: string
+                  residents:
+                    type: array
+                    items:
+                      type: string
+                  films:
+                    type: array
+                    items:
+                      type: string
+                  created:
+                    type: string
+                  edited:
+                    type: string
+                  url:
+                    type: string
+                required:
+                  - name
+                  - rotation_period
+                  - orbital_period
+                  - diameter
+                  - climate
+                  - gravity
+                  - terrain
+                  - surface_water
+                  - population
+                  - residents
+                  - films
+                  - created
+                  - edited
+                  - url
+              examples: {}
+      x-docufox-hash: 5dd1b1f17333c8ecffe537abc6acd2c2267d313ba6599c85c1fe6816be6e1ec6
+      summary: List all planets
+      description: Retrieves a collection of planets and their available attributes, such as identifiers, names, and physical or orbital properties. The response returns an array of planet resources and may be empty if no planets match the request criteria.
