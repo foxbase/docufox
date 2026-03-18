@@ -2,6 +2,7 @@ export class ApiCO {
 	constructor(private api: object) {}
 
 	toString() {
-		return `OpenAPI specification:\n\n${this.api}`;
+		const stringifiedApi = JSON.stringify(this.api);
+		return `OpenAPI specification:\n\n${stringifiedApi}`;
 	}
 }

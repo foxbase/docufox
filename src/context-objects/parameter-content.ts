@@ -1,4 +1,4 @@
-export class ResponseContentCO {
+export class ParameterContentCO {
 	constructor(
 		private mediaType: string,
 		private content: object,
@@ -6,6 +6,6 @@ export class ResponseContentCO {
 
 	toString() {
 		const stringifiedContent = JSON.stringify(this.content);
-		return `Response content:\n\n${this.mediaType}\n\n${stringifiedContent}`;
+		return `Parameter content:\n\n${this.mediaType}\n\n${stringifiedContent}`;
 	}
 }

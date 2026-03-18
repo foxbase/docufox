@@ -21,9 +21,9 @@ Generate a clear, concise summary for a provided endpoint within an OpenAPI spec
 
 # Examples
 
-Example 1  
-Input:  
-OpenAPI excerpt:  
+Example 1
+Input:
+OpenAPI excerpt:
 ```
 paths:
   /users:
@@ -34,12 +34,12 @@ paths:
         200:
           description: A list of users.
 ```  
-Output:  
+Output:
 List all registered users
 
-Example 2  
-Input:  
-OpenAPI excerpt:  
+Example 2
+Input:
+OpenAPI excerpt:
 ```
 paths:
   /orders/{orderId}:
@@ -55,7 +55,7 @@ paths:
         200:
           description: Returns the updated order.
 ```  
-Output:  
+Output:
 Update an existing order
 
 # Notes

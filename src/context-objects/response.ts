@@ -5,6 +5,7 @@ export class ResponseCO {
 	) {}
 
 	toString() {
-		return `Response:\n\n${this.statusCode}\n\n${this.response}`;
+		const stringifiedResponse = JSON.stringify(this.response);
+		return `Response:\n\n${this.statusCode}\n\n${stringifiedResponse}`;
 	}
 }

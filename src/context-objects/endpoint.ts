@@ -6,6 +6,7 @@ export class EndpointCO {
 	) {}
 
 	toString() {
-		return `Endpoint:\n\n${this.method.toUpperCase()} ${this.path}\n\n${this.operation}`;
+		const stringifiedOperation = JSON.stringify(this.operation);
+		return `Endpoint:\n\n${this.method.toUpperCase()} ${this.path}\n\n${stringifiedOperation}`;
 	}
 }

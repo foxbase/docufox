@@ -15,9 +15,9 @@ Generate a clear, concise, and informative description for a provided endpoint w
 
 # Examples
 
-Example 1  
-Input:  
-OpenAPI excerpt:  
+Example 1
+Input:
+OpenAPI excerpt:
 ```
 paths:
   /users:
@@ -27,13 +27,13 @@ paths:
       responses:
         200:
           description: A list of users.
-```  
-Output:  
+```
+Output:
 Retrieves a complete list of users registered in the system, including relevant details for each user.
 
-Example 2  
-Input:  
-OpenAPI excerpt:  
+Example 2
+Input:
+OpenAPI excerpt:
 ```
 paths:
   /orders/{orderId}:
@@ -48,8 +48,8 @@ paths:
       responses:
         200:
           description: Returns the updated order.
-```  
-Output:  
+```
+Output:
 Updates the specified order with new details provided in the request and returns the updated order information.
 
 # Notes

@@ -23,58 +23,58 @@ Generate a clear, concise, and informative description for a provided response o
 
 # Examples
 
-Example 1  
-Input:  
-OpenAPI excerpt:  
-paths:  
-  /users:  
-    get:  
-      summary: List all users  
-      description: Get a list of all users in the system.  
-      responses:  
-        200:  
-          description: A list of users.  
-          content:  
-            application/json:  
-              schema:  
-                type: array  
-                items:  
-                  $ref: '#/components/schemas/User'  
-Output:  
+Example 1
+Input:
+OpenAPI excerpt:
+paths:
+  /users:
+    get:
+      summary: List all users
+      description: Get a list of all users in the system.
+      responses:
+        200:
+          description: A list of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+Output:
 Returns an array of all users currently registered in the system, with each user represented by their relevant account details.
 
-Example 2  
-Input:  
-OpenAPI excerpt:  
-paths:  
-  /orders/{orderId}:  
-    put:  
-      summary: Update an order  
-      responses:  
-        200:  
-          description: Returns the updated order.  
-          content:  
-            application/json:  
-              schema:  
-                $ref: '#/components/schemas/Order'  
-Output:  
+Example 2
+Input:
+OpenAPI excerpt:
+paths:
+  /orders/{orderId}:
+    put:
+      summary: Update an order
+      responses:
+        200:
+          description: Returns the updated order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+Output:
 Provides the updated order information, reflecting all changes successfully applied to the specified order.
 
-Example 3  
-Input:  
-OpenAPI excerpt:  
-paths:  
-  /login:  
-    post:  
-      summary: User login  
-      responses:  
-        401:  
-          description:  
-          content:  
-            application/json:  
-              schema:  
-                $ref: '#/components/schemas/Error'  
-Output:  
+Example 3
+Input:
+OpenAPI excerpt:
+paths:
+  /login:
+    post:
+      summary: User login
+      responses:
+        401:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+Output:
 Indicates that authentication has failed due to invalid credentials, and provides details about the error.
 
 (These examples are indicative; longer or more complex response objects should be described similarly, focusing on the effective result as received by the client.)
