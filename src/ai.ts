@@ -221,6 +221,10 @@ function strictifySchema(
 		}
 	}
 
+	if (strictSchema.not) {
+		delete strictSchema.not;
+	}
+
 	if (strictSchema.type.includes("string")) {
 		// Ensure generated example strings do not get too long
 		if (!strictSchema.maxLength || strictSchema.maxLength > 100) {
