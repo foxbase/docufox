@@ -221,12 +221,20 @@ function strictifySchema(
 		}
 	}
 
-	// Ensure generated example strings do not get too long
-	if (
-		strictSchema.type.includes("string") &&
-		(!strictSchema.maxLength || strictSchema.maxLength > 100)
-	) {
-		strictSchema.maxLength = 100;
+	if (strictSchema.type.includes("string")) {
+		// Ensure generated example strings do not get too long
+		if (!strictSchema.maxLength || strictSchema.maxLength > 100) {
+			strictSchema.maxLength = 100;
+		}
+
+		// OpenAI rejects patterns that contain \p or \P
+		if (
+			strictSchema.pattern &&
+			(strictSchema.pattern.includes("\\p") ||
+				strictSchema.pattern.includes("\\P"))
+		) {
+			delete strictSchema.pattern;
+		}
 	}
 
 	if (strictSchema.type.includes("object")) {
