@@ -239,6 +239,23 @@ function strictifySchema(
 		) {
 			delete strictSchema.pattern;
 		}
+
+		if (
+			strictSchema.format &&
+			![
+				"date-time",
+				"time",
+				"date",
+				"duration",
+				"email",
+				"hostname",
+				"ipv4",
+				"ipv6",
+				"uuid",
+			].includes(strictSchema.format)
+		) {
+			delete strictSchema.format;
+		}
 	}
 
 	if (strictSchema.type.includes("object")) {
