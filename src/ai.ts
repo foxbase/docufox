@@ -227,8 +227,8 @@ function strictifySchema(
 
 	if (strictSchema.type.includes("string")) {
 		// Ensure generated example strings do not get too long
-		if (!strictSchema.maxLength || strictSchema.maxLength > 100) {
-			strictSchema.maxLength = 100;
+		if (!strictSchema.maxLength || strictSchema.maxLength > 250) {
+			strictSchema.maxLength = 250;
 		}
 
 		// OpenAI rejects patterns that contain \p or \P
